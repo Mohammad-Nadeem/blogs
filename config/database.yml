@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  host: localhost
+  port: 5432
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: blogs_dev
+test:
+  <<: *default
+  database: blogs_test
+production:
+  <<: *default
+  database: blogs_production
